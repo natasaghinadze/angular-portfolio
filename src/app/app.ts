@@ -1,12 +1,21 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import * as AOS from 'aos';
+import { Header } from './components/header/header';
+import { Footer } from './components/footer/footer';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Header, Footer],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App {
-  protected readonly title = signal('angular-portfolio');
+export class App implements OnInit {
+  ngOnInit(): void {
+    AOS.init({
+      duration: 800,
+      once: true,
+      easing: 'ease-in-out-cubic',
+    })
+  }
 }
